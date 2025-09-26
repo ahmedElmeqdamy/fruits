@@ -12,7 +12,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
   // Add other routes here as needed
   default:
   return MaterialPageRoute(builder: (_) => const Scaffold(
-  body: Center(child: Text('Unknown Route')),
+  body: Center(child: Text('un')),
   ));
   }
 }
