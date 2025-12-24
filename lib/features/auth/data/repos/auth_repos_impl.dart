@@ -16,9 +16,9 @@ class AuthReposImpl extends AuthRepo {
     required this.firebaseAuthServices,
     required this.databaseServices,
   });
+final FirebaseAuthServices firebaseAuthServices;
+final DatabaseServices databaseServices;
 
-  final FirebaseAuthServices firebaseAuthServices;
-  final DatabaseServices databaseServices;
 
   @override
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword(
@@ -138,31 +138,38 @@ class AuthReposImpl extends AuthRepo {
     }
   }
 
-  @override
-  Future<dynamic> addUserData({required UserEntity user}) async {
-    // throw Exception('Not implemented');
-
-    // api firestore any data base treat with map not object so we put method toMap
-    // add data to firestore
-    await databaseServices.addData(
-      path: 'users',
-      data: UserModel.fromUserEntity(userEntity: user).toMap(),
-      documentId: user.uid,
-    );
-  }
 
   @override
   Future<UserEntity> getUserData({required String uid}) async {
-    final userData = await databaseServices.getData(path: 'users', uid: uid);
-    return UserModel.fromMap(userData);
+    var userData = await databaseServices.getData(path: 'users', uid: uid);
+    return UserModel.fromJson(userData as Map<String, dynamic>) ;
   }
 
   // this method is used to save the user data to the shared preferences local storage
   @override
-  Future<dynamic> saveUserData({required UserEntity user}) async {
-    final jsonData = jsonEncode(
-      UserModel.fromUserEntity(userEntity: user).toMap(),
-    );
+  Future  saveUserData({required UserEntity user}) async {
+    var jsonData = jsonEncode(
+      UserModel.fromEntity(userEntity: user).toMap(),);
+
     await Prefs.setString('userData', jsonData);
   }
+
+
+  @override
+   Future  addUserData({required UserEntity user}) async {
+    // api firestore any data base treat with map not object so we put method toMap
+    // add data to firestore
+    await databaseServices.addData(
+      path: 'users',
+      data: UserModel.fromEntity(userEntity: user).toMap(),
+      documentId: user.uid,
+    );
+  }
+
+
+  // @override
+  // Future saveUserData({required UserEntity user}) async {
+  //   var jsonData = jsonEncode(UserModel.fromEntity(user).toMap());
+  //   await Prefs.setString(kUserData, jsonData);
+  // }
 }

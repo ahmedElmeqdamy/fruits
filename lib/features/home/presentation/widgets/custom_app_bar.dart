@@ -11,8 +11,8 @@ class CustomAppBar extends StatelessWidget {
       child: ListTile(
         leading: Image.asset('assets/images/pp.png'),
         title:  Text(
-          'Good Morning...${getUser().name}',
-          style: const TextStyle(color: Colors.grey),
+          'Good Morning...${ getUser().name}',
+          style:  TextStyle(color: Colors.grey),
         ),
         subtitle:  const Text('What are you going to do today?'),
         trailing: IconButton(

@@ -1,6 +1,6 @@
 import 'database_services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+//same......................................................
 class FirestoreServices implements DatabaseServices {
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
@@ -11,19 +11,19 @@ class FirestoreServices implements DatabaseServices {
     String? documentId,
   }) async {
     if (documentId != null) {
-      await firebaseFirestore.collection(path).doc(documentId).set(data);
+       firebaseFirestore.collection(path).doc(documentId).set(data);
     } else {
       await firebaseFirestore.collection(path).add(data);
     }
   }
 
   @override
-  Future<Map<String, dynamic>> getData({
+  Future<dynamic> getData({
     required String path,
-    required String uid,
+     String? uid,
   }) async {
-    final data = await firebaseFirestore.collection(path).doc(uid).get();
-    return data.data() as Map<String, dynamic>;
+    var data = await firebaseFirestore.collection(path).doc(uid).get();
+    return data.data();
   }
 
   @override
