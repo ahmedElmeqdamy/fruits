@@ -5,7 +5,7 @@ import 'package:fruits/features/on_boarding/presentation/on_boarding_view.dart';
 import 'package:fruits/features/splash/presentation/views/splash_view.dart';
 
 import '../../features/best_selling_fruits/presentation/best_selling_view.dart';
-import '../../features/home/presentation/home_view.dart';
+import '../../features/home/presentation/main_view.dart';
 
 //create on generate Route function 1-2 go to main to see section 2
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -20,7 +20,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const LoginView());
 
     case 'homeView':
-      return MaterialPageRoute(builder: (context) => const HomeView());
+      return MaterialPageRoute(builder: (context) => const MainView());
 
     case 'signUpView':
       return MaterialPageRoute(builder: (context) => const SignUpView());

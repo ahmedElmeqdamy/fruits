@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-
+import '../entity/product_entity.dart';
 import '../utils/app_text_style.dart';
 
 class FruitItem extends StatelessWidget {
-  const FruitItem({super.key});
+  const FruitItem({required this.productEntity, super.key});
+
+  final ProductEntity productEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -28,17 +30,19 @@ class FruitItem extends StatelessWidget {
             child: Column(
               children: [
                 // SizedBox(height: 10,),
-                Image.asset(
-                  'assets/images/watermelon.png',
-                  fit: BoxFit.contain,
+                Flexible(
+                  child: Image.network(
+                    productEntity.imageUrl!,
+                    fit: BoxFit.contain,
+                  ),
                 ),
                 ListTile(
                   title: Text(
-                    'Watermelon',
+                    productEntity.name,
                     style: AppStyles.bold16.copyWith(color: Colors.black),
                   ),
                   subtitle: Text(
-                    '20 \$ / 1 kilo',
+                    '${productEntity.price} \$ / ${productEntity.unitAmount}',
                     style: AppStyles.regular13.copyWith(color: Colors.blue),
                   ),
                   trailing: GestureDetector(
