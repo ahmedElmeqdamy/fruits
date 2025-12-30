@@ -7,23 +7,24 @@ import '../../../../core/cubits/product_cubit/product_cubit.dart';
 import '../../../../core/helper_function/get_dummy_product.dart';
 import 'best_selling_grid_view.dart';
 
-class BestSellingGirdViewBlocBuilder extends StatelessWidget {
-  const BestSellingGirdViewBlocBuilder({super.key});
+class ProductGirdViewBlocBuilder extends StatelessWidget {
+  const ProductGirdViewBlocBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProductCubit, ProductStates>(
       builder: (context, state) {
         if (state is ProductSuccess) {
-          return BestSellingGridView(products: state.products);
+          return ProductGridView(products: state.products);
         } else if (state is ProductError) {
           return SliverToBoxAdapter(
             child: Center(child: Text('Something went wrong')),
           );
         } else {
+
           return Skeletonizer.sliver(
             // enabled: true,
-            child: BestSellingGridView(products: getDummyProducts()),
+            child: ProductGridView(products: getDummyProducts()),
           );
         }
       },

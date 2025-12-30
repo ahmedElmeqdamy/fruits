@@ -30,12 +30,16 @@ class FruitItem extends StatelessWidget {
             child: Column(
               children: [
                 // SizedBox(height: 10,),
-                Flexible(
-                  child: Image.network(
+               productEntity.imageUrl != null ?  Flexible(
+                  child:  Image.network(
                     productEntity.imageUrl!,
                     fit: BoxFit.contain,
                   ),
-                ),
+                ):Container(
+                 color: Colors.red,
+                 height: 100,
+                 width: 100,
+               ),
                 ListTile(
                   title: Text(
                     productEntity.name,

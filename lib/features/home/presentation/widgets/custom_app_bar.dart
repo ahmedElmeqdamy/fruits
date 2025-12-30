@@ -7,14 +7,14 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  const EdgeInsets.all(10.0),
+      padding:   EdgeInsets.all(10.0),
       child: ListTile(
         leading: Image.asset('assets/images/pp.png'),
         title:  Text(
           'Good Morning...${ getUser().name}',
           style:  TextStyle(color: Colors.grey),
         ),
-        subtitle:  const Text('What are you going to do today?'),
+        subtitle:   Text('What are you going to do today?'),
         trailing: IconButton(
           onPressed: () {},
           icon: Image.asset('assets/images/notif.png'),

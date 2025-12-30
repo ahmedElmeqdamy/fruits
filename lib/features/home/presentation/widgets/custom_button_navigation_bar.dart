@@ -3,7 +3,9 @@ import '../../domain/entities/bottom_navigation_bar_entity.dart';
 import 'navigation_bar_item.dart';
 
 class CustomBottomNavigatorBar extends StatefulWidget {
-  const CustomBottomNavigatorBar({super.key});
+  final ValueChanged<int> onItemTapped;
+
+  const CustomBottomNavigatorBar({required this.onItemTapped, super.key});
 
   @override
   State<CustomBottomNavigatorBar> createState() =>
@@ -45,6 +47,7 @@ class _CustomBottomNavigatorBarState extends State<CustomBottomNavigatorBar> {
               onTap: () {
                 setState(() {
                   selectedIndex = index;
+                  widget.onItemTapped(index);
                 });
               },
               child: NavigationBarItem(
