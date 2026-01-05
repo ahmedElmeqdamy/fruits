@@ -1,8 +1,9 @@
 import 'dart:io';
 
+import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:fruits/core/entity/review_entity.dart';
-
-class ProductEntity {
+ class ProductEntity extends Equatable{
   ProductEntity({
     required this.name,
     required this.description,
@@ -30,4 +31,7 @@ class ProductEntity {
   final int ratingCount = 0;
   final int unitAmount;
   final List<ReviewEntity> reviews;
+
+  @override
+  List<Object?> get props => [code];
 }

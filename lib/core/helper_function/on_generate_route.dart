@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fruits/features/auth/presentation/views/login_view.dart';
 import 'package:fruits/features/auth/presentation/views/widgets/sign_up_view.dart';
+import 'package:fruits/features/check_out/presentation/checkout_view.dart';
 import 'package:fruits/features/on_boarding/presentation/on_boarding_view.dart';
 import 'package:fruits/features/splash/presentation/views/splash_view.dart';
 
@@ -27,6 +28,9 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
 
     case 'bestSellingView':
       return MaterialPageRoute(builder: (context) => const BestSellingView());
+
+    case 'checkoutView':
+      return MaterialPageRoute(builder: (context) => const CheckoutView());
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }

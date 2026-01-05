@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../features/home/presentation/cubits/cart_cubit/cart_cubit.dart';
 import '../entity/product_entity.dart';
 import '../utils/app_text_style.dart';
 
@@ -50,7 +52,9 @@ class FruitItem extends StatelessWidget {
                     style: AppStyles.regular13.copyWith(color: Colors.blue),
                   ),
                   trailing: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      context.read<CartCubit>().addItemToCart(productEntity);
+                    },
                     child: const CircleAvatar(
                       backgroundColor: Colors.blue,
                       child: Icon(Icons.add),
