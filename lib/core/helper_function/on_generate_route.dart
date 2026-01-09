@@ -6,6 +6,7 @@ import 'package:fruits/features/on_boarding/presentation/on_boarding_view.dart';
 import 'package:fruits/features/splash/presentation/views/splash_view.dart';
 
 import '../../features/best_selling_fruits/presentation/best_selling_view.dart';
+import '../../features/check_out/presentation/widgets/address_input_section.dart';
 import '../../features/home/presentation/main_view.dart';
 
 //create on generate Route function 1-2 go to main to see section 2
@@ -31,6 +32,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
 
     case 'checkoutView':
       return MaterialPageRoute(builder: (context) => const CheckoutView());
+       case 'addressInputView':
+      return MaterialPageRoute(builder: (context) => const AddressInputSection());
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }

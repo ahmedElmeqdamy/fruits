@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/fixed_widgets/custom_button.dart';
+import '../../../../core/helper_function/box_error.dart';
 import '../cubits/cart_cubit/cart_cubit.dart';
 import '../cubits/cart_item_cubit/cart_item_cubit.dart';
 
@@ -18,7 +19,11 @@ class CustomCartButtonBlocBuilder extends StatelessWidget {
           text:
               'pay now ${context.watch<CartCubit>().cartEntity.calculateTotalPrice()} LE',
           onPressed: () {
-            Navigator.pushNamed(context, 'checkoutView');
+            if(context.read<CartCubit>().cartEntity.cartItems.isNotEmpty){
+              Navigator.pushNamed(context, 'checkoutView');
+            }else{
+              ShowBoxError.show(context, 'cart is empty');
+            }
           },
         );
       },

@@ -9,7 +9,7 @@ class CustomTextFormField extends StatelessWidget {
     this.controller,
     this.validator,
     this.onChanged,
-    this.onSaved,
+    this.onSaved, this.keyboardType,
   });
   final String hintText;
   final Widget? suffixIcon;
@@ -18,12 +18,14 @@ class CustomTextFormField extends StatelessWidget {
   final FormFieldValidator<String>? validator;
   final ValueChanged<String>? onChanged;
   final void Function(String?)? onSaved;
+  final TextInputType? keyboardType;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
+        keyboardType: keyboardType,
         onSaved: onSaved,
         controller: controller,
         obscureText: obscureText,
