@@ -49,6 +49,7 @@ dependencies:
   flutter_svg_provider: ^1.0.7
   skeletonizer: ^2.1.2
   equatable: ^2.0.7
+  provider: ^6.1.5+1
 
 
 dev_dependencies:

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../core/fixed_widgets/custom_text_field.dart';
 
 class AddressInputSection extends StatelessWidget {
-  const AddressInputSection({super.key});
+    AddressInputSection({required this.formKey, super.key});
+  final GlobalKey<FormState> formKey  ;
 
   @override
   Widget build(BuildContext context) {

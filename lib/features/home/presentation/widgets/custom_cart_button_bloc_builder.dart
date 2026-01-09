@@ -19,9 +19,13 @@ class CustomCartButtonBlocBuilder extends StatelessWidget {
           text:
               'pay now ${context.watch<CartCubit>().cartEntity.calculateTotalPrice()} LE',
           onPressed: () {
-            if(context.read<CartCubit>().cartEntity.cartItems.isNotEmpty){
-              Navigator.pushNamed(context, 'checkoutView');
-            }else{
+            if (context.read<CartCubit>().cartEntity.cartItems.isNotEmpty) {
+              Navigator.pushNamed(
+                context,
+                'checkoutView',
+                arguments: context.read<CartCubit>().cartEntity,
+              );
+            } else {
               ShowBoxError.show(context, 'cart is empty');
             }
           },

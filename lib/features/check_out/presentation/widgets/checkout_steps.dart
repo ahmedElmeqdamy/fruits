@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits/core/helper_function/box_error.dart';
+import 'package:fruits/features/check_out/domain/entites/order_entity.dart';
 import 'package:fruits/features/check_out/presentation/widgets/step_item.dart';
 
 class CheckoutSteps extends StatelessWidget {
@@ -18,11 +21,15 @@ class CheckoutSteps extends StatelessWidget {
         return Expanded(
           child: GestureDetector(
             onTap: () {
-              pageController.animateToPage(
-                index,
-                duration: Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-              );
+              if (context.read<OrderEntity>().payedWithCash != null) {
+                pageController.animateToPage(
+                  index,
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                );
+              } else {
+                ShowBoxError.show(context, 'Please select the payment method');
+              }
             },
             child: StepItem(
               isActive: index <= currentPageIndex,

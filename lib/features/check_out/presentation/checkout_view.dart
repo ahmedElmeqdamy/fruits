@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:fruits/core/helper_function/build_app_bar.dart';
+import 'package:fruits/features/check_out/domain/entites/order_entity.dart';
 import 'package:fruits/features/check_out/presentation/widgets/checkout_view_body.dart';
+import 'package:fruits/features/home/domain/entities/cart_entity.dart';
+import 'package:fruits/features/home/domain/entities/cart_item_entity.dart';
+import 'package:provider/provider.dart';
 
 class CheckoutView extends StatelessWidget {
-  const CheckoutView({super.key});
+  const CheckoutView({required this.cartEntity, super.key});
+
+  final CartEntity cartEntity;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(text: 'shipping' ,showNotification: false),
+      appBar: buildAppBar(text: 'shipping', showNotification: false),
 
-      body: CheckoutViewBody(),
+      body: Provider.value(
+        value: OrderEntity(cartEntity: cartEntity),
+
+        child: CheckoutViewBody(),
+      ),
     );
   }
 }

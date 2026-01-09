@@ -3,14 +3,15 @@ import 'package:fruits/features/check_out/presentation/widgets/payment_section.d
 import 'package:fruits/features/check_out/presentation/widgets/shipping_section.dart';
 
 import 'address_input_section.dart';
-import 'checkout_steps.dart';
 class CheckoutStepsPageView extends StatelessWidget {
-  const CheckoutStepsPageView({
-    super.key,
+    CheckoutStepsPageView({
+    required this.formKey, super.key,
     required this.pageController,
   });
 
   final PageController pageController;
+
+  final GlobalKey<FormState> formKey ;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class CheckoutStepsPageView extends StatelessWidget {
   List<Widget> getPage(){
     return [
       ShippingSection(),
-      AddressInputSection(),
+      AddressInputSection(formKey: formKey,),
       PaymentSection(),
 
     ];
