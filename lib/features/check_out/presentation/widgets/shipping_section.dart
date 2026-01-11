@@ -40,6 +40,7 @@ class _ShippingSectionState extends State<ShippingSection> with AutomaticKeepAli
           onTap: () {
             setState(() {
               selectedIndex = 1;
+              context.read<OrderEntity>().payedWithCash = false;
             });
           },
           title: 'Online Payment',

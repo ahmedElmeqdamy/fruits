@@ -4,11 +4,11 @@ import 'package:fruits/features/check_out/presentation/widgets/shipping_section.
 
 import 'address_input_section.dart';
 class CheckoutStepsPageView extends StatelessWidget {
-    CheckoutStepsPageView({
-    required this.formKey, super.key,
+    const CheckoutStepsPageView({
+    required this.valueNotifier, required this.formKey, super.key,
     required this.pageController,
   });
-
+final ValueNotifier<AutovalidateMode> valueNotifier;
   final PageController pageController;
 
   final GlobalKey<FormState> formKey ;
@@ -23,7 +23,7 @@ class CheckoutStepsPageView extends StatelessWidget {
         physics: NeverScrollableScrollPhysics(),
 
         itemBuilder: (context, index) {
-          return getPage()[index];  
+          return getPage()[index];
         },
       ),
     );
@@ -32,8 +32,8 @@ class CheckoutStepsPageView extends StatelessWidget {
   List<Widget> getPage(){
     return [
       ShippingSection(),
-      AddressInputSection(formKey: formKey,),
-      PaymentSection(),
+      AddressInputSection(formKey: formKey,valueNotifier: valueNotifier,),
+      PaymentSection(pageController: pageController,),
 
     ];
   }

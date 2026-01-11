@@ -25,6 +25,7 @@ class CustomTextFormField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
+
         keyboardType: keyboardType,
         onSaved: onSaved,
         controller: controller,

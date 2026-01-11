@@ -3,11 +3,13 @@ import 'package:fruits/features/home/domain/entities/cart_entity.dart';
 
 class OrderEntity {
   OrderEntity({
-   required this.cartEntity, this.shippingAddress,
-     this.payedWithCash,
+    required this.uID,
+    required this.cartEntity,
+    this.payedWithCash,
   });
 
-final CartEntity cartEntity;
-   bool? payedWithCash;
-  final ShippingAddressEntity? shippingAddress;
+  final String uID;
+  final CartEntity cartEntity;
+  bool? payedWithCash;
+  ShippingAddressEntity shippingAddress = ShippingAddressEntity();
 }

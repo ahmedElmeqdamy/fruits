@@ -17,6 +17,11 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   late PageController pageController;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  //simple state management to control the autoValidate mode of the form
+  final ValueNotifier<AutovalidateMode> valueNotifier = ValueNotifier(
+    AutovalidateMode.disabled,
+  );
+
   @override
   void initState() {
     pageController = PageController();
@@ -31,7 +36,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   @override
   void dispose() {
     pageController.dispose();
-
+    valueNotifier.dispose();
     super.dispose();
   }
 
@@ -44,27 +49,26 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
       child: Column(
         children: [
           const SizedBox(height: 20),
-          CheckoutSteps(currentPageIndex: currentPageIndex,
-            pageController: pageController,),
+          CheckoutSteps(
+            currentPageIndex: currentPageIndex,
+            pageController: pageController,
+          ),
           Expanded(
             child: CheckoutStepsPageView(
-              pageController: pageController, formKey:_formKey,),
+              pageController: pageController,
+              formKey: _formKey,
+              valueNotifier: valueNotifier,
+            ),
           ),
           CustomButton(
             backgroundColor: Colors.blue,
             textColor: Colors.white,
             text: getNextButtonText(currentPageIndex),
             onPressed: () {
-              if (context
-                  .read<OrderEntity>()
-                  .payedWithCash != null) {
-                pageController.animateToPage(
-                  currentPageIndex + 1,
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.slowMiddle,
-                );
-              } else {
-                ShowBoxError.show(context, 'Please select the payment method');
+              if (currentPageIndex == 0) {
+                _handleShippingSectionValidation(context);
+              } else if (currentPageIndex == 1) {
+                _handleAddressSectionValidation();
               }
             },
           ),
@@ -72,6 +76,18 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         ],
       ),
     );
+  }
+
+  void _handleShippingSectionValidation(BuildContext context) {
+    if (context.read<OrderEntity>().payedWithCash != null) {
+      pageController.animateToPage(
+        currentPageIndex + 1,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.slowMiddle,
+      );
+    } else {
+      ShowBoxError.show(context, 'Please select the payment method');
+    }
   }
 
   String getNextButtonText(int currentPageIndex) {
@@ -84,6 +100,19 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         return 'pay with paypal';
       default:
         return 'Error';
+    }
+  }
+
+  void _handleAddressSectionValidation() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      pageController.animateToPage(
+        currentPageIndex + 1,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.slowMiddle,
+      );
+    } else {
+      valueNotifier.value = AutovalidateMode.onUserInteraction;
     }
   }
 }

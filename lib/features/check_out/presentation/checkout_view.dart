@@ -6,6 +6,8 @@ import 'package:fruits/features/home/domain/entities/cart_entity.dart';
 import 'package:fruits/features/home/domain/entities/cart_item_entity.dart';
 import 'package:provider/provider.dart';
 
+import '../../../core/helper_function/get_user.dart';
+
 class CheckoutView extends StatelessWidget {
   const CheckoutView({required this.cartEntity, super.key});
 
@@ -17,7 +19,7 @@ class CheckoutView extends StatelessWidget {
       appBar: buildAppBar(text: 'shipping', showNotification: false),
 
       body: Provider.value(
-        value: OrderEntity(cartEntity: cartEntity),
+        value: OrderEntity(cartEntity: cartEntity, uID: getUser().uid),
 
         child: CheckoutViewBody(),
       ),

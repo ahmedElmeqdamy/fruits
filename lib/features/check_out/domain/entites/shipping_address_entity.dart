@@ -1,17 +1,23 @@
 class ShippingAddressEntity {
   ShippingAddressEntity({
-    required this.name,
-    required this.address,
-    required this.phoneNumber,
-    required this.addressDetails,
-    required this.city,
-    required this.email,
+     this.name,
+     this.address,
+     this.phoneNumber,
+     this.addressDetails,
+     this.city,
+     this.email,
   });
 
-  final String name;
-  final String address;
-  final String phoneNumber;
-  final String addressDetails;
-  final String city;
-  final String email;
+   String? name;
+   String? address;
+   String? phoneNumber;
+   String? addressDetails;
+   String? city;
+   String? email;
+
+
+   @override
+  String toString() {
+     return '$address $addressDetails $city ';
+  }
 }

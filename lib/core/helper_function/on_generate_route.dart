@@ -37,10 +37,10 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
         builder: (context) =>
             CheckoutView(cartEntity: settings.arguments as CartEntity),
       );
-    case 'addressInputView':
-      return MaterialPageRoute(
-        builder: (context) => const AddressInputSection(),
-      );
+    // case 'addressInputView':
+    //   return MaterialPageRoute(
+    //     builder: (context) =>  AddressInputSection(formKey: null,),
+    //   );
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }
