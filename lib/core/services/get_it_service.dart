@@ -3,6 +3,8 @@ import 'package:fruits/features/auth/data/repos/auth_repos_impl.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../features/auth/domain/repos/auth_repo.dart';
+import '../repos/order_repo/orders_repo.dart';
+import '../repos/order_repo/orders_repo_impl.dart';
 import '../repos/product_repo/product_repo_impl.dart';
 import '../repos/product_repo/product_repos.dart';
 import 'firebase_auth_services.dart';
@@ -15,7 +17,7 @@ void setupGetIt() {
   // Register services
   getIt.registerSingleton<FirebaseAuthServices>(FirebaseAuthServices());
   getIt.registerSingleton<DatabaseServices>(FirestoreServices());
-  
+
   // Register repositories with their dependencies
   getIt.registerSingleton<AuthRepo>(
     AuthReposImpl(
@@ -24,8 +26,11 @@ void setupGetIt() {
     ),
   );
   getIt.registerSingleton<ProductRepo>(
-    ProductRepoImpl(
-      databaseServices: getIt<DatabaseServices>(),
+    ProductRepoImpl(databaseServices: getIt<DatabaseServices>()),
+  );
+  getIt.registerSingleton<OrderRepo>(
+    OrderRepoImpl(
+       getIt<DatabaseServices>()
     ),
   );
 }

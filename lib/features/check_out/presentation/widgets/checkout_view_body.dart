@@ -4,6 +4,7 @@ import 'package:fruits/core/fixed_widgets/custom_button.dart';
 import 'package:fruits/core/helper_function/box_error.dart';
 import 'package:fruits/features/check_out/domain/entites/order_entity.dart';
 import 'package:fruits/features/check_out/presentation/widgets/checkout_steps.dart';
+import '../manager/add_order_cubit/add_order_cubit.dart';
 import 'checkout_steps_page_view.dart';
 
 class CheckoutViewBody extends StatefulWidget {
@@ -69,6 +70,10 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
                 _handleShippingSectionValidation(context);
               } else if (currentPageIndex == 1) {
                 _handleAddressSectionValidation();
+              } else {
+                context.read<AddOrderCubit>().addOrder(
+                  orderEntity: context.read<OrderEntity>(),
+                );
               }
             },
           ),
