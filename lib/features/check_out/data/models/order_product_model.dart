@@ -15,7 +15,7 @@ class OrderProductModel {
     return OrderProductModel(
       name: cartItemEntity.productEntity.name,
       price: cartItemEntity.productEntity.price.toDouble(),
-      quantity: cartItemEntity.count,
+      quantity: cartItemEntity.quantity,
       imageUrl: cartItemEntity.productEntity.imageUrl!,
       code: cartItemEntity.productEntity.code,
     );

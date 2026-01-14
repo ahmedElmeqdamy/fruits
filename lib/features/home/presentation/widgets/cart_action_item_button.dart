@@ -28,7 +28,7 @@ class CartActionItemButton extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.0),
           child: Text(
-            '${cartItemEntity.count.toString()}',
+            '${cartItemEntity.quantity.toString()}',
             style: AppStyles.bold16.copyWith(color: Colors.orange),
           ),
         ),

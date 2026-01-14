@@ -12,4 +12,22 @@ class OrderEntity {
   final CartEntity cartEntity;
   bool? payedWithCash;
   ShippingAddressEntity shippingAddress = ShippingAddressEntity();
+  double calculateShippingCost(){
+    if(payedWithCash!){
+      return 30;
+    }else {
+      return 0;
+    }
+  }
+
+ double calculateShippingDiscount(){
+    return 0;
+  }
+  double calculateTotalPriceAfterDiscountAndShipping(){
+    return cartEntity.calculateTotalPrice() + calculateShippingCost() - calculateShippingDiscount();
+  }
+
+}
+String getCurrency(){
+  return 'EG';
 }
